@@ -9,6 +9,7 @@ Technical Challenge for Starling Bank
 
 ## Import files:
 ###### Once project is cloned into your local repo select import gradle project and use wrapper gradle version
+###### In IDE pick SDK: Java 11 and Project Language Level: 11    
 ###### Project use lombok which required annotation processing being enabled in IDE
 
 ## How to run the application:
