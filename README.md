@@ -7,6 +7,10 @@ Technical Challenge for Starling Bank
 ###### Also Current Client Balance would need to be updated as per round up amount that is being transfer into Saving Goal 
 ###### Currently application will only make another transfer for that amount without updating current balance
 
+## Import files:
+###### Once project is cloned into your local repo select import gradle project and use wrapper gradle version
+###### Project use lombok which required annotation processing being enabled in IDE
+
 ## How to run the application:
 ###### Application will expose REST API that can be tested using Swagger UI
 ###### With IDE, run class called **StarlingBankFeature.java**
