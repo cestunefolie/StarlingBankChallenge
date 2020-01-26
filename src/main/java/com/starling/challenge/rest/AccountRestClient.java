@@ -20,26 +20,24 @@ import static org.springframework.http.HttpStatus.OK;
 @Service
 public class AccountRestClient {
     private final RestTemplate restTemplate;
-
-    public AccountRestClient(RestTemplate restTemplate){
-        this.restTemplate = restTemplate;
-    }
-
     @Value("${account.service.url}")
     private String accountInfoUrl;
     @Value("${token}")
     private String token;
+    public AccountRestClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     public Account getAccounts() {
         log.info("Getting accounts");
 
-        ResponseEntity<Accounts> response  = this.restTemplate.exchange(accountInfoUrl, GET, new HttpEntity<>(null, getHeaders(token)), Accounts.class);
-        if(response.getStatusCode() != OK) {
+        ResponseEntity<Accounts> response = this.restTemplate.exchange(accountInfoUrl, GET, new HttpEntity<>(null, getHeaders(token)), Accounts.class);
+        if (response.getStatusCode() != OK) {
             throw new StarlingApiException("Got Error Code: " + response.getStatusCode());
         }
         return ofNullable(response.getBody())
                 .map(Accounts::getAccounts)
-                .map(accounts -> accounts.get(0))
+                .flatMap(a -> a.stream().findFirst())
                 .orElseThrow(() -> new MissingAccountException("No Account found"));
 
     }

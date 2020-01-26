@@ -44,14 +44,16 @@ public class TransactionRestClient {
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(uri)
                 .queryParam("minTransactionTimestamp", formatLocalDateTime(weekAgo))
                 .queryParam("maxTransactionTimestamp", formatLocalDateTime(now));
-        log.info("Getting transaction for account {} for previous week", account.getAccountUid());
+        log.info("Getting transactions for account {} for previous week", account.getAccountUid());
         ResponseEntity<Feeds> response  = this.restTemplate.exchange(builder.build().toUriString(), GET, new HttpEntity<>(null, getHeaders(token)), Feeds.class);
         if(response.getStatusCode() != OK) {
             throw new StarlingApiException("Got Error Code: " + response.getStatusCode());
         }
-        return ofNullable(response.getBody())
+        List<Feed> feeds = ofNullable(response.getBody())
                 .map(Feeds::getFeedItems)
                 .orElseGet(Collections::emptyList);
+        log.info("Got {} transaction/s", feeds.size());
+        return feeds;
     }
 
 }

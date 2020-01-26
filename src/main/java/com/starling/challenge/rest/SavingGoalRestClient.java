@@ -55,6 +55,7 @@ public class SavingGoalRestClient {
         if(response.getStatusCode() != OK) {
             throw new StarlingApiException("Got Error Code: " + response.getStatusCode());
         }
+        log.info("Money is successfully moved ");
         return RoundUpResponse.builder()
                 .message("Money moved into saving goal")
                 .amount(amount)

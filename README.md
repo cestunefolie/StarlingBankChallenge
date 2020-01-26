@@ -13,6 +13,11 @@ Technical Challenge for Starling Bank
 ###### Get new access token from your Developer Starling Account 
 ###### Replace the access token on file "application.properties" in the project called token
 
+## Import files:
+###### Once project is cloned into your local repo select import gradle project and use wrapper gradle version
+###### In IDE pick SDK: Java 11 and Project Language Level: 11    
+###### Project use lombok which required annotation processing being enabled in IDE
+
 ## How to run the application:
 ###### Application will expose REST API that can be tested using Swagger UI
 ###### With IDE, run class called **StarlingBankFeature.java**
