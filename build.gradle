@@ -1,0 +1,32 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.starling.challenge'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+	// implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.11'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testCompile group: 'junit', name: 'junit', version: '4.13'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+	useJUnitPlatform()
+}
